@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
 class CodeEditorComponent extends React.Component {
     render() {
     // TODO: Don't hardcode the ID.
-        return <div id="hardcodedEditorId">return "Hello, World!"</div>
+        return <div id="hardcodedEditorId" dangerouslySetInnerHTML={{__html: 'let value = "Hello, World!";\n\nreturn value;'}}></div>
     }
 
     componentDidMount() {
