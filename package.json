@@ -1,7 +1,9 @@
 {
   "name": "instant",
   "version": "0.1.0",
-  "private": true,
+  "homepage": ".",
+  "author": "Francois Wouts (f@codonut.com)",
+  "license": "MIT",
   "dependencies": {
     "brace": "^0.10.0",
     "react": "^15.5.4",
