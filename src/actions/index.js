@@ -1,6 +1,6 @@
 export const runCode = (code) => {
-    return {
-        type: 'RUN',
-        payload: {code}
-    }
+  return {
+    type: 'RUN',
+    payload: {code}
+  }
 }

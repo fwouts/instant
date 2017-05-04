@@ -4,14 +4,14 @@ import ResultPanel from './ResultPanel'
 import './App.css'
 
 class App extends React.Component {
-    render () {
-        return (
+  render () {
+    return (
       <div className="App">
         <CodeEditor />
         <ResultPanel />
       </div>
-        )
-    }
+    )
+  }
 }
 
 export default App

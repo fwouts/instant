@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import code from './code'
 
 const instantApp = combineReducers({
-    code
+  code
 })
 
 export default instantApp
