@@ -1,0 +1,20 @@
+.resultPanel {
+	height: 20%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.resultPanel.success {
+	background: #2D6;
+	color: #000;
+}
+
+.resultPanel.failure {
+	background: #B00;
+	color: #FFF;
+}
+
+.result {
+	font-size: 3em;
+}

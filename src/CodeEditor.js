@@ -1,13 +1,27 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { runCode } from './actions'
 import * as ace from 'brace'
 import 'brace/mode/java'
 import 'brace/theme/monokai'
 import './CodeEditor.css'
 
-class CodeEditor extends React.Component {
+const mapStateToProps = () => {
+    return {}
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onCodeChange: (code) => {
+            dispatch(runCode(code))
+        }
+    }
+}
+
+class CodeEditorComponent extends React.Component {
     render() {
     // TODO: Don't hardcode the ID.
-        return <div id="hardcodedEditorId"></div>
+        return <div id="hardcodedEditorId">return "Hello, World!"</div>
     }
 
     componentDidMount() {
@@ -15,40 +29,15 @@ class CodeEditor extends React.Component {
         this.editor.setTheme('ace/theme/monokai')
         this.editor.getSession().setMode('ace/mode/javascript')
         this.editor.addEventListener('change', () => {
-            this.runCode()
+            this.props.onCodeChange(this.editor.getSession().getValue())
         })
-    }
-
-    runCode() {
-        console.clear()
-        this.workerEval(this.editor.getSession().getValue()).then(result => {
-            console.log('Result:', result)
-        }, () => {
-          // Ignore errors.
-        })
-    }
-
-    workerEval(untrustedCode) {
-        return new Promise(function (resolve, reject) {
-            var worker = new Worker('worker.js')
-
-            worker.onmessage = function (e) {
-                worker.terminate()
-                resolve(e.data)
-            }
-
-            worker.onerror = function (e) {
-                reject(new Error(e.message))
-            }
-
-            worker.postMessage(untrustedCode)
-
-            setTimeout(function () {
-                worker.terminate()
-                reject(new Error('The worker timed out.'))
-            }, 1000)
-        })
+        this.props.onCodeChange(this.editor.getSession().getValue())
     }
 }
+
+const CodeEditor = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CodeEditorComponent)
 
 export default CodeEditor
