@@ -28,6 +28,12 @@ class CodeEditorComponent extends React.Component {
         this.editor = ace.edit('hardcodedEditorId')
         this.editor.setTheme('ace/theme/monokai')
         this.editor.getSession().setMode('ace/mode/javascript')
+        this.editor.setOptions({
+            fontSize: '14pt',
+            printMargin: false,
+            printMarginColumn: false,
+            tabSize: 2
+        })
         this.editor.addEventListener('change', () => {
             this.props.onCodeChange(this.editor.getSession().getValue())
         })
