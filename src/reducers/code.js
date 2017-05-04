@@ -1,7 +1,8 @@
 import store from '../store'
 
 const code = (state = {
-    result: null
+    result: null,
+    error: null
 }, action) => {
     switch (action.type) {
     case 'RUN':
@@ -12,21 +13,25 @@ const code = (state = {
                     result: result
                 }
             })
-        }, () => {
+        }, (errorMessage) => {
             store.dispatch({
                 type: 'RUN_FAILED',
-                payload: {}
+                payload: {
+                    errorMessage: errorMessage
+                }
             })
         })
         return state
     case 'RUN_SUCCESSFUL':
         return Object.assign({}, state, {
             status: 'SUCCESS',
-            result: action.payload.result
+            result: action.payload.result,
+            error: null
         })
     case 'RUN_FAILED':
         return Object.assign({}, state, {
-            status: 'FAILURE'
+            status: 'FAILURE',
+            error: action.payload.errorMessage
         })
     default:
         return state
@@ -43,7 +48,8 @@ function workerEval(untrustedCode) {
         }
 
         worker.onerror = function (e) {
-            reject(new Error(e.message))
+            console.log(e)
+            reject(e.message)
         }
 
         worker.postMessage(untrustedCode)

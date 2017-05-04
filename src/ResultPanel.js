@@ -5,7 +5,8 @@ import './ResultPanel.css'
 const mapStateToProps = (state) => {
     return {
         status: state.code.status,
-        result: state.code.result
+        result: state.code.result,
+        error: state.code.error,
     }
 }
 
@@ -16,7 +17,10 @@ const mapDispatchToProps = () => {
 class ResultPanelComponent extends React.Component {
     render() {
         return <div className={this.className()}>
-            <span className="result">{this.props.result}</span>
+            <div>
+                <div className="result">{this.props.result}</div>
+                <div className="error">{this.props.error}</div>
+            </div>
         </div>
     }
 
