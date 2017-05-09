@@ -4,7 +4,7 @@ A minimal prototype of an instant code editor. It runs JS code as you type.
 
 ## Demo
 
-Try it out: https://cdn.rawgit.com/fwouts/instant/demo-v2/
+[Try it out](https://cdn.rawgit.com/fwouts/instant/demo-v3/index.html)
 
 ## Underlying technologies
 
